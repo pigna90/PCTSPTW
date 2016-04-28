@@ -9,6 +9,8 @@ import random
 # - Make distances matrix asimmetric
 # - Add a random number from 1 to 10(float) to each elements
 # under the diagonal of distances matrix
+# NB: Instance with more than one time window that start
+# from 0 aren't valid
 ##
 # Params:
 # old_instance - path to Langevin instance file
