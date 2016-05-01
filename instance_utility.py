@@ -66,7 +66,7 @@ def create_instance(old_instance,new_instance,m_min=0,m_max=5,p_min=1,p_max=100)
 	fp_out.close()
 
 def main():
-	#create_instance("Instances/N20ft204.dat","/tmp/prova.txt")
+	#create_instance("Langevin Instances/N20ft204.dat","/tmp/prova.txt")
 	
 if __name__ == "__main__":
 	main()
