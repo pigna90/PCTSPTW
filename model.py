@@ -4,12 +4,19 @@ from instance_utility import *
 
 def main():
 
+	# Read instance from file
 	ris = instance_loader("inst")
+	
 	NODES = [n for n in range(1,ris["n"])]
+	# Origin and arrive (same node)
 	d,o = [0],[0]
+	# Prizes
 	p = ris["p"]
+	# Start time windows
 	a = ris["a"]
+	# Stop time windows
 	b = ris["b"]
+	# Archs's weight
 	t = ris["m"]
 
 	# Maximize problem
