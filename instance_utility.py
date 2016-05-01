@@ -1,5 +1,6 @@
 import os
 import random
+import numpy as np
 
 ##
 # Adapt a TSPTW Langevin instance for
@@ -119,9 +120,3 @@ def instance_loader(path):
 	dictionary = {"n": n, "a": a, "b": b, "p": p, "m": m}
 		
 	return dictionary
-
-def main():
-	#create_instance("Langevin Instances/N20ft204.dat","/tmp/prova.txt")
-	
-if __name__ == "__main__":
-	main()
