@@ -1,7 +1,17 @@
 from pulp import *
 import numpy as np
+from instance_utility import *
 
 def main():
+
+	ris = instance_loader("inst")
+	NODES = [n for n in range(1,ris["n"])]
+	d,o = [0],[0]
+	p = ris["p"]
+	a = ris["a"]
+	b = ris["b"]
+	t = ris["m"]
+
 	# Maximize problem
 	prob = LpProblem("PCTSPTW",LpMaximize)
 
