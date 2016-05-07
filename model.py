@@ -91,7 +91,7 @@ def main():
 			print("y_" + str(i),"=",1)
 	print("--------")
 
-	path = [0]
+	edges = []
 	# Print archs used
 	for i in [o]+NODES:
 		for j in [d]+NODES:
@@ -99,16 +99,26 @@ def main():
 				if(value(x[(i,j)]) >= 1):
 					if j!=d:
 						print("x(" + str(i) + "_" + str(j) + ") =",1)
-						path.append(j)
+						edges.append((i,j))
 					else:
 						print("x(" + str(i) + "_" + str(o) + ") =",1)
-						path.append(o)
+						edges.append((i,o))
 	print("--------")
 
 	# Print path
-	print("Path")
-	if sys.version_info[0] >= 3:
-		print(*path,sep="->",end="")
+	path = []
+	node = 0
+	for i in range(1,len(edges)):
+		for j in edges:
+			if node == j[0]:
+				path.append(node)
+				node = j[1]
+				edges.remove(j)
+	path.append(0)
+
+	print(path)
+	print(*path,sep="->")
+	
 
 if __name__ == "__main__":
 	main()
