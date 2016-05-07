@@ -1,6 +1,7 @@
 from pulp import *
 import numpy as np
 from instance_utility import *
+import sys
 
 def main():
 
@@ -26,11 +27,6 @@ def main():
 	t = np.vstack((t,t[0]))
 	t = np.concatenate((t,np.array([t[:,0]]).T),axis=1)
 
-	print(a)
-	print(b)
-	print(p)
-	print(t)
-	
 	# Maximize problem
 	prob = LpProblem("PCTSPTW",LpMaximize)
 
@@ -89,11 +85,13 @@ def main():
 	print("--------")
 
 	# Print PoI visited
+	print("PoI visited")
 	for i in NODES:
 		if(value(y[i]) >= 1):
 			print("y_" + str(i),"=",1)
 	print("--------")
 
+	path = [0]
 	# Print archs used
 	for i in [o]+NODES:
 		for j in [d]+NODES:
@@ -101,13 +99,16 @@ def main():
 				if(value(x[(i,j)]) >= 1):
 					if j!=d:
 						print("x(" + str(i) + "_" + str(j) + ") =",1)
+						path.append(j)
 					else:
 						print("x(" + str(i) + "_" + str(o) + ") =",1)
+						path.append(o)
 	print("--------")
 
-	# Print T for used points
-	for i in [d]+NODES:
-		print(T[i]," ",value(T[i]))
+	# Print path
+	print("Path")
+	if sys.version_info[0] >= 3:
+		print(*path,sep="->",end="")
 
 if __name__ == "__main__":
 	main()
