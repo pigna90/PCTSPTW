@@ -113,7 +113,7 @@ def instance_loader(path):
 	
 	# populate each row of matrix 
 	for j in range(0, n):
-		temp = array[i].split(" ")
+		temp = array[i].split()
 		m[j] = temp
 		i = i + 1
 	
