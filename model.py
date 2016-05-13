@@ -42,13 +42,6 @@ def main():
 		for j in (NODES+[d])
 		if i!=j], 0, 1, LpBinary)
 
-	## Print archs used
-	#for i in [o]+NODES:
-		#for j in [d]+NODES:
-			#if(i!=j):
-				#if(value(x[(i,j)]) != 1):
-					#print(x[(i,j)]," ",value(x[(i,j)]))
-	#quit()
 	# Objective function
 	prob += lpSum(p[i]*y[i] for i in NODES)
 
@@ -108,7 +101,7 @@ def main():
 	# Print path
 	path = []
 	node = 0
-	for i in range(1,len(edges)):
+	for i in range(0,len(edges)):
 		for j in edges:
 			if node == j[0]:
 				path.append(node)
