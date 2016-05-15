@@ -46,10 +46,9 @@ def create_instance(old_instance,new_instance,m_min=0,m_max=5,p_min=1,p_max=100)
 
 	# Select and write time series intervals and write on new instance
 	# adding prize for each node
-	for i in range(1,nodes+1):
+	for i in range(1,nodes):
 		line_old = lines[i].split()
-		if(line_old[0] != "0"):
-			fp_out.write("%s,%s %s\n" % (line_old[0],line_old[1].split("\n")[0],random.randint(1,100)))
+		fp_out.write("%s,%s %s\n" % (line_old[0],line_old[1].split("\n")[0],random.randint(1,100)))
 
 	# Select distances matrix and write it into new instance
 	# file by adding a random value to each elements
