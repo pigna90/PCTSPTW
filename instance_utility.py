@@ -73,7 +73,9 @@ def create_instance(old_instance,new_instance,m_min=0,m_max=5,p_min=1,p_max=100)
 # - Price for each node
 # - Matrix of distances
 # Params:
+##
 # path - path of the file that contain the instance
+##
 def instance_loader(path):
 	
 	dictionary = {}
@@ -120,3 +122,19 @@ def instance_loader(path):
 	dictionary = {"n": n, "a": a, "b": b, "p": p, "m": m}
 		
 	return dictionary
+
+##
+# For every instance file in dir_in generate an instance
+# with same name in dir_out
+##
+# Params:
+# dir_in - path to Langeving instances directory
+# dir_out - path to directory for new instances
+##
+def generate_instances(dir_in="Langevin Instances/",dir_out="Instances/"):
+	langevine_list = os.listdir(dir_in)
+	for inst in langevine_list:
+		create_instance(dir_in+inst, dir_out+inst)
+	
+if __name__ == "__main__":
+	generate_instances()
