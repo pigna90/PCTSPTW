@@ -39,12 +39,10 @@ def create_instance(old_instance,new_instance,m_min=0,m_max=5,p_min=1,p_max=100)
 	# Write the number of nodes into a new instance file
 	fp_out.write("%s\n" % nodes)
 
-	# Search starting node selecting time window that start from 0
-	# and write it like first node with value prize to 0
-	for i in range(1,nodes+1):
-		line_old = lines[i].split()
-		if(line_old[0] == "0"):
-			fp_out.write("%s,%s %s\n" % (line_old[0],line_old[1].split("\n")[0],0))
+	# Select starting node from nodes+1 line, before matrix,
+	# and write it on first line with value prize to 0
+	line_old = lines[nodes].split()
+	fp_out.write("%s,%s %s\n" % (line_old[0],line_old[1].split("\n")[0],0))
 
 	# Select and write time series intervals and write on new instance
 	# adding prize for each node
@@ -135,6 +133,3 @@ def generate_instances(dir_in="Langevin Instances/",dir_out="Instances/"):
 	langevine_list = os.listdir(dir_in)
 	for inst in langevine_list:
 		create_instance(dir_in+inst, dir_out+inst)
-	
-if __name__ == "__main__":
-	generate_instances()
