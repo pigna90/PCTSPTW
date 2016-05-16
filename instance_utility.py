@@ -94,7 +94,7 @@ def instance_loader(path):
 	
 	while(count < n):
 		
-		price = array[i].split(" ")
+		price = array[i].split()
 		time = price[0].split(",")
 		
 		a.update({count : int(time[0])})
