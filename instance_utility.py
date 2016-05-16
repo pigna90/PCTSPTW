@@ -73,7 +73,7 @@ def convert_AFG_instance(old_instance,new_instance,m_min=0,m_max=5,p_min=1,p_max
 # m_min, m_max - random values range for asimmetric matrix
 # p_min, p_max - random values range for prize
 ##
-def create_instance(old_instance,new_instance,m_min=0,m_max=5,p_min=1,p_max=100):
+def convert_Lang_instance(old_instance,new_instance,m_min=0,m_max=5,p_min=1,p_max=100):
 	fp = open(old_instance)
 
 	# Remove new_instance if exist
@@ -116,6 +116,19 @@ def create_instance(old_instance,new_instance,m_min=0,m_max=5,p_min=1,p_max=100)
 		fp_out.write("\n")
 		
 	fp_out.close()
+
+##
+# For every instance file in dir_in generate an instance
+# with same name in dir_out
+##
+# Params:
+# dir_in - path to old instances directory
+# dir_out - path to directory for new instances
+##
+def generate_instances(dir_in="Langevin Instances/",dir_out="Instances/"):
+	instances_list = os.listdir(dir_in)
+	for inst in instances_list:
+		create_instance(dir_in+inst, dir_out+inst)
 
 # This function return a dictionary contain the information
 # for each instance:
@@ -170,16 +183,3 @@ def instance_loader(path):
 	dictionary = {"n": n, "a": a, "b": b, "p": p, "m": m}
 		
 	return dictionary
-
-##
-# For every instance file in dir_in generate an instance
-# with same name in dir_out
-##
-# Params:
-# dir_in - path to Langeving instances directory
-# dir_out - path to directory for new instances
-##
-def generate_instances(dir_in="Langevin Instances/",dir_out="Instances/"):
-	langevine_list = os.listdir(dir_in)
-	for inst in langevine_list:
-		create_instance(dir_in+inst, dir_out+inst)
