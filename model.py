@@ -6,7 +6,7 @@ import sys
 def main():
 
 	# Read instance from file
-	ris = instance_loader("inst")
+	ris = instance_loader("data/Instances/N20ft410.dat")
 	
 	NODES = [n for n in range(1,ris["n"])]
 	# Origin
@@ -71,7 +71,7 @@ def main():
 		prob += T[i] >= a[i]
 		prob += T[i] <= b[i]
 
-	prob.solve()
+	#prob.solve(GUROBI(LogFile="/tmp/logGurobi.prova"))
 
 	# Print problem status
 	print("Status solution: ",LpStatus[prob.status])

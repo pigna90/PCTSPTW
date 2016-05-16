@@ -125,10 +125,13 @@ def convert_Lang_instance(old_instance,new_instance,m_min=0,m_max=5,p_min=1,p_ma
 # dir_in - path to old instances directory
 # dir_out - path to directory for new instances
 ##
-def generate_instances(dir_in="Langevin Instances/",dir_out="Instances/"):
+def generate_instances(inst_name="Lang",dir_in="data/Langevin Instances/",dir_out="data/Instances_Lang/"):
 	instances_list = os.listdir(dir_in)
 	for inst in instances_list:
-		create_instance(dir_in+inst, dir_out+inst)
+		if inst_name == "Lang":
+			convert_Lang_instance(dir_in+inst, dir_out+inst)
+		elif inst_name == "AFG":
+			convert_AFG_instance(dir_in+inst, dir_out+inst)
 
 # This function return a dictionary contain the information
 # for each instance:
