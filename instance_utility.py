@@ -3,15 +3,69 @@ import random
 import numpy as np
 
 ##
+# Adapt a AFG instance for
+# Prize-collecting Traveling Salesman Problem with Time Windows (PCTSPTW)
+# - Swap time windows and distances matrix
+# - Add a random prize from 1 to 100(int) for each nodes except node 0
+# - Sobstitute first row with non zero values
+# - Add a random number from 1 to 10(float) to each elements
+# under the diagonal of distances matrix
+##
+# Params:
+# old_instance - path to AFG instance file
+# new_instance - path to new instance
+# m_min, m_max - random values range for first row
+# p_min, p_max - random values range for prize
+##
+def convert_AFG_instance(old_instance,new_instance,m_min=0,m_max=5,p_min=1,p_max=100):
+	fp = open(old_instance)
+
+	# Remove new_instance if exist
+	try:
+		os.remove(new_instance)
+	except OSError:
+		pass
+	
+	fp_out = open(new_instance,"a")
+
+	# Read every line from file and save into a list
+	lines = [line for i,line in enumerate(fp)]
+	fp.close()
+
+	# Select from the first line the number of nodes
+	nodes = int(lines[0].split("\n")[0])
+	# Write the number of nodes into a new instance file
+	fp_out.write("%s\n" % nodes)
+
+	# Swap distances matrix with time windows
+	lines = [lines[0]] + lines[nodes+1:nodes*2+1] + lines[1:nodes+1]
+
+	# Select and write time series intervals and write on new instance
+	# adding prize for each node
+	for i in range(1,nodes+1):
+		line_old = lines[i].split()
+		fp_out.write("%s,%s %s\n" % (line_old[0],line_old[1].split("\n")[0],random.randint(1,100)))
+
+	# Read first column and add a random number, write it like
+	# first row of the matrix
+	fp_out.write("0 ")
+	for i in range(nodes+2,nodes*2+1):
+		line = list(map(int,lines[i].split()))
+		fp_out.write("%s " % (line[0] + random.randint(m_min,m_max)))
+	fp_out.write("\n")
+
+	# Write rest of the matrix from second row
+	for i in lines[nodes+2:nodes*2+1]:
+		fp_out.write(i)
+
+##
 # Adapt a TSPTW Langevin instance for
 # Prize-collecting Traveling Salesman Problem with Time Windows (PCTSPTW)
 # - Add a random prize from 1 to 100(int) for each nodes except node 0
-# - Move node 0 on the first line
+# - Move node 0 from last line to first line
 # - Make distances matrix asimmetric
 # - Add a random number from 1 to 10(float) to each elements
 # under the diagonal of distances matrix
-# NB: Instance with more than one time window that start
-# from 0 aren't valid
 ##
 # Params:
 # old_instance - path to Langevin instance file
@@ -74,7 +128,6 @@ def create_instance(old_instance,new_instance,m_min=0,m_max=5,p_min=1,p_max=100)
 # path - path of the file that contain the instance
 ##
 def instance_loader(path):
-	
 	dictionary = {}
 	# array contain all text file 
 	array = []
@@ -93,7 +146,6 @@ def instance_loader(path):
 	n = int(array[0])
 	
 	while(count < n):
-		
 		price = array[i].split()
 		time = price[0].split(",")
 		
@@ -103,7 +155,6 @@ def instance_loader(path):
 		
 		count = count + 1
 		i = i + 1
-	
 	
 	i = n + 1
 	
