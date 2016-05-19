@@ -1,6 +1,8 @@
 import os
 import random
 import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
 
 ##
 # Adapt a AFG instance for
@@ -186,3 +188,20 @@ def instance_loader(path):
 	dictionary = {"n": n, "a": a, "b": b, "p": p, "m": m}
 		
 	return dictionary
+
+def gurobi_cbc_times(timesPath,graphPath):
+	df = pd.read_csv(timesPath)
+	maxTime = max(max(df["GUROBI"]),max(df["CBC"]))
+	df.plot(style="-o",xlim=1,ylim=(-10,maxTime+20),grid=True)
+	plt.title("GUROBI VS CBC")
+	plt.ylabel("Seconds")
+	plt.xlabel("Instance")
+	plt.savefig(graphPath, bbox_inches='tight')
+	df.plot(style="-o",logy=True,xlim=1,ylim=(-10,maxTime+100),grid=True)
+	plt.title("GUROBI VS CBC - Logy scale")
+	plt.ylabel("Seconds")
+	plt.xlabel("Instance")
+	plt.savefig(graphPath+"_log.png", bbox_inches='tight')
+	plt.close()
+
+gurobi_cbc_times("exec_time.csv","graph.png")
