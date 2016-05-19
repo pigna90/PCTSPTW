@@ -135,6 +135,7 @@ def generate_instances(inst_name="Lang",dir_in="data/Langevin Instances/",dir_ou
 		elif inst_name == "AFG":
 			convert_AFG_instance(dir_in+inst, dir_out+inst)
 
+##
 # This function return a dictionary contain the information
 # for each instance:
 # - Number of nodes
@@ -189,19 +190,27 @@ def instance_loader(path):
 		
 	return dictionary
 
+##
+# Plot execution time results saved on csv
+##
+# Params:
+# timesPath - executsion times for two solvers
+# graphPath - result graph name
+##
 def gurobi_cbc_times(timesPath,graphPath):
 	df = pd.read_csv(timesPath)
 	maxTime = max(max(df["GUROBI"]),max(df["CBC"]))
+	# Normal graph
 	df.plot(style="-o",xlim=1,ylim=(-10,maxTime+20),grid=True)
 	plt.title("GUROBI VS CBC")
 	plt.ylabel("Seconds")
 	plt.xlabel("Instance")
 	plt.savefig(graphPath, bbox_inches='tight')
+	# Logarithmic scale y graph
 	df.plot(style="-o",logy=True,xlim=1,ylim=(-10,maxTime+100),grid=True)
 	plt.title("GUROBI VS CBC - Logy scale")
 	plt.ylabel("Seconds")
 	plt.xlabel("Instance")
 	plt.savefig(graphPath+"_log.png", bbox_inches='tight')
+	
 	plt.close()
-
-gurobi_cbc_times("exec_time.csv","graph.png")
