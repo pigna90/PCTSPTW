@@ -1,4 +1,5 @@
 inst_*
 __pycache__
 *.log
+*.png
 exec_time.csv
