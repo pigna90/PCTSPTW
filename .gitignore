@@ -1,2 +1,4 @@
 inst_*
 __pycache__
+*.log
+exec_time.csv
