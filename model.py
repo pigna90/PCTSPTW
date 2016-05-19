@@ -6,10 +6,12 @@ import os
 
 def main():
 
-	instances_list = os.listdir("data/AFG_Instances_new/")
+	instances_list = os.listdir("data/Instances_AFG_sub/")
+	instances_list.sort()
+	print("\n\nGUROBI\nmaxTime=600s\n\n")
 	for inst in instances_list:
 		# Read instance from file
-		ris = instance_loader("data/AFG_Instances_new/"+inst)
+		ris = instance_loader("data/Instances_AFG_sub/"+inst)
 		print("############################################")
 		print("####### "+inst+" #######")
 		NODES = [n for n in range(1,ris["n"])]
@@ -75,8 +77,8 @@ def main():
 			prob += T[i] >= a[i]
 			prob += T[i] <= b[i]
 
-		#prob.solve(GUROBI())
-		prob.solve(PULP_CBC_CMD(msg=1,maxSeconds=180))
+		prob.solve(GUROBI(TimeLimit=600))
+		#prob.solve(PULP_CBC_CMD(msg=1,maxSeconds=600))
 
 		# Print problem status
 		print("Status solution: ",LpStatus[prob.status])
