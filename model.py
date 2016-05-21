@@ -5,13 +5,18 @@ import sys
 import os
 
 def main():
-
-	instances_list = os.listdir("data/Instances_AFG_sub/")
+	gurobi_cbc_times("exec_time.csv","/tmp/ris")
+	quit()
+	pathInstances = sys.argv[1]
+	solv = sys.argv[2]
+	
+	instances_list = os.listdir(pathInstances)
 	instances_list.sort()
-	print("\n\nGUROBI\nmaxTime=600s\n\n")
+	print("\n\n" + solv + "\nmaxTime=600s\n\n")
+
 	for inst in instances_list:
 		# Read instance from file
-		ris = instance_loader("data/Instances_AFG_sub/"+inst)
+		ris = instance_loader(pathInstances+inst)
 		print("############################################")
 		print("####### "+inst+" #######")
 		NODES = [n for n in range(1,ris["n"])]
@@ -77,9 +82,14 @@ def main():
 			prob += T[i] >= a[i]
 			prob += T[i] <= b[i]
 
-		prob.solve(GUROBI(TimeLimit=600))
-		#prob.solve(PULP_CBC_CMD(msg=1,maxSeconds=600))
-
+		if solv == "GUROBI":
+			prob.solve(GUROBI(TimeLimit=600))
+		elif solv == "CBC":
+			prob.solve(PULP_CBC_CMD(msg=1,maxSeconds=600))
+		else:
+			print(solv + " solver doesn't exists")
+			quit()
+			
 		# Print problem status
 		print("Status solution: ",LpStatus[prob.status])
 		print("--------")
