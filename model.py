@@ -21,7 +21,7 @@ def main():
 		pathInstances = ""
 		
 	# Parameters for cbc
-	cbcOpt = ["rens","on","local","on"] 
+	cbcOpt = ["rens","on","local","on"]
 	
 	print("\n\n" + solv + "\nmaxTime=" + str(maxTime) + "s\n\n")
 
@@ -137,7 +137,7 @@ def main():
 					edges.remove(j)
 		path.append(0)
 
-		print(path)
+		print("Path")
 		print(*path,sep="->")
 		print("############################################")
 
