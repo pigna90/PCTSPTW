@@ -5,14 +5,25 @@ import sys
 import os
 
 def main():
-	gurobi_cbc_times("exec_time.csv","/tmp/ris")
-	quit()
+	# Path to instances folder
 	pathInstances = sys.argv[1]
+	# Solver
 	solv = sys.argv[2]
+	# Time limit for solver
+	maxTime = int(sys.argv[3])
+
+	# Check if directory of instances or single instance
+	if(os.path.isdir(pathInstances)):
+		instances_list = os.listdir(pathInstances)
+		instances_list.sort()
+	else:
+		instances_list = [pathInstances]
+		pathInstances = ""
+		
+	# Parameters for cbc
+	cbcOpt = ["rens","on","local","on"] 
 	
-	instances_list = os.listdir(pathInstances)
-	instances_list.sort()
-	print("\n\n" + solv + "\nmaxTime=600s\n\n")
+	print("\n\n" + solv + "\nmaxTime=" + str(maxTime) + "s\n\n")
 
 	for inst in instances_list:
 		# Read instance from file
@@ -83,9 +94,9 @@ def main():
 			prob += T[i] <= b[i]
 
 		if solv == "GUROBI":
-			prob.solve(GUROBI(TimeLimit=600))
+			prob.solve(GUROBI(TimeLimit=maxTime))
 		elif solv == "CBC":
-			prob.solve(PULP_CBC_CMD(msg=1,maxSeconds=600))
+			prob.solve(PULP_CBC_CMD(msg=1,maxSeconds=maxTime,options=cbcOpt))
 		else:
 			print(solv + " solver doesn't exists")
 			quit()
