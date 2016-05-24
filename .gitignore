@@ -4,3 +4,4 @@ __pycache__
 *.png
 *.dat
 exec_time.csv
+log/*
