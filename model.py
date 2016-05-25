@@ -100,7 +100,8 @@ def main():
 		else:
 			print(solv + " solver doesn't exists")
 			quit()
-			
+
+		prob.writeLP("/tmp/prob.lp")
 		# Print problem status
 		print("Status solution: ",LpStatus[prob.status])
 		print("--------")
