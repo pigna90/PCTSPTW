@@ -4,19 +4,21 @@ This project is designed for educational purposes as project of the corse of Mod
 
 
 ### Tech
-This is what you need before running:
- - **Python 3.x**
- - **PuLP** - as Python module
- - **Pandas** - as Python module
- - **Numpy** - as Python module
- - [CBC]
- - [GUROBI]
+This is what you need before running: 
+
+* **Python 3.x**
+* **PuLP** - as Python module
+* **Pandas** - as Python module
+* **Numpy** - as Python module
+* [CBC]
+* [GUROBI]
 
 ### Files and directories description
 A brief description of project contents:
- - **module. py** - implementation of PCTSPTW problem and solver call
- - **instance_utility. py** - instances generators and other utility functions
- - **data/** - contain all instances
+
+* **module. py** - implementation of PCTSPTW problem and solver call
+* **instance_utility. py** - instances generators and other utility functions
+* **data/** - contain all instances
 
 ### Examples usage
 Solve one instance using CBC with max time 600s:
