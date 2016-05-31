@@ -19,6 +19,7 @@ A brief description of project contents:
 * **module. py** - implementation of PCTSPTW problem and solver call
 * **instance_utility. py** - instances generators and other utility functions
 * **data/** - contain all instances
+* **src/** - source files
 
 ### Examples usage
 Solve one instance using CBC with max time 600s:
