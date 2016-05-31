@@ -32,6 +32,10 @@ $ python model.py /path/to/instances_folder/ GUROBI 10
 ```
 **NB**: python is an alias for python3.x
 
+### Contact
+[Alessandro Romano]
+
 [PuLP]:https://pythonhosted.org/PuLP/
-[CBC]: https://projects.coin-or.org/Cbc
+[CBC]:https://projects.coin-or.org/Cbc
 [GUROBI]:http://gurobi.com/
+[Alessandro Romano]:mailto:alessandro.romano@linux.com
