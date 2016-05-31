@@ -94,14 +94,16 @@ def main():
 			prob += T[i] <= b[i]
 
 		if solv == "GUROBI":
-			prob.solve(GUROBI(TimeLimit=maxTime))
+			prob.solve(GUROBI(TimeLimit=maxTime,msg=1))
 		elif solv == "CBC":
 			prob.solve(PULP_CBC_CMD(msg=1,maxSeconds=maxTime,options=cbcOpt))
 		else:
 			print(solv + " solver doesn't exists")
 			quit()
 
-		prob.writeLP("/tmp/prob.lp")
+		
+		#prob.writeLP("/tmp/prob/"+ inst + ".lp")
+
 		# Print problem status
 		print("Status solution: ",LpStatus[prob.status])
 		print("--------")
