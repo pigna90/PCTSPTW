@@ -25,13 +25,12 @@ A brief description of project contents:
 Solve one instance using CBC with max time 600s:
 
 ```sh
-$ python src/model.py instance.dat CBC 600
+$ python3 src/model.py instance.dat CBC 600
 ```
 Solve a set of instance using GUROBI with max time 10s:
 ```sh
-$ python src/model.py /path/to/instances_folder/ GUROBI 10
+$ python3 src/model.py /path/to/instances_folder/ GUROBI 10
 ```
-**NB**: python is an alias for python3.x
 
 ### Contact
 [Alessandro Romano]
