@@ -19,16 +19,17 @@ A brief description of project contents:
 * **module. py** - implementation of PCTSPTW problem and solver call
 * **instance_utility. py** - instances generators and other utility functions
 * **data/** - contain all instances
+* **src/** - source files
 
 ### Examples usage
 Solve one instance using CBC with max time 600s:
 
 ```sh
-$ python3 model.py instance.dat CBC 600
+$ python3 src/model.py instance.dat CBC 600
 ```
 Solve a set of instance using GUROBI with max time 10s:
 ```sh
-$ python3 model.py /path/to/instances_folder/ GUROBI 10
+$ python3 src/model.py /path/to/instances_folder/ GUROBI 10
 ```
 
 ### Contact
