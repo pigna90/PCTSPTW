@@ -1,9 +1,9 @@
 # Prize-Collecting Traveling Salesman Problem with Time Windows (PCTSPTW)
 
-This project is designed for educational purposes as project of the corse of Model-Driven Decision Methods a.a 2015/16 (University Of Pisa). The goal is implement a Linear Programming Model with [PuLP] and solve it with at least two different solvers, like [CBC] and [GUROBI] (Accademic License) in this case (feel free to use whatever you want/need). At last  optimize one of theese in order to improve performance.
+This project is designed for educational purposes as project of the lecture of Model-Driven Decision Methods a.a 2015/16 (University Of Pisa). The goal is to implement a Linear Programming Model with [PuLP] and solve it with at least two different solvers, like [CBC] and [GUROBI] (Accademic License) in this case (feel free to use whatever you want/need). At last  optimize one of theese in order to improve the execution time.
 
 
-### Tech
+## Tech
 This is what you need before running: 
 
 * **Python 3.x**
@@ -13,7 +13,7 @@ This is what you need before running:
 * [CBC]
 * [GUROBI]
 
-### Files and directories description
+## Files and directories description
 A brief description of project contents:
 
 * **module. py** - implementation of PCTSPTW problem and solver call
@@ -21,18 +21,18 @@ A brief description of project contents:
 * **data/** - contain all instances
 * **src/** - source files
 
-### Examples usage
-Solve one instance using CBC with max time 600s:
+## Examples usage
+Solve one instance by using CBC with max time 600s:
 
 ```sh
 $ python3 src/model.py instance.dat CBC 600
 ```
-Solve a set of instance using GUROBI with max time 10s:
+Solve a set of instance by using GUROBI with max time 10s:
 ```sh
 $ python3 src/model.py /path/to/instances_folder/ GUROBI 10
 ```
 
-### Contact
+## Author
 [Alessandro Romano]
 
 [PuLP]:https://pythonhosted.org/PuLP/
