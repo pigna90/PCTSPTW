@@ -15,7 +15,7 @@ This is what you need before running:
 * [CBC]
 * [GUROBI]
 
-### Files and directories description
+## Files and directories description
 A brief description of project contents:
 
 * **module. py** - implementation of PCTSPTW problem and solver call
@@ -23,7 +23,7 @@ A brief description of project contents:
 * **data/** - contains all instances
 * **src/** - source files
 
-### Examples usage
+## Examples usage
 Solve one instance by using CBC with max time 600s:
 
 ```sh
@@ -34,7 +34,7 @@ Solve a set of instance by using GUROBI with max time 10s:
 $ python3 src/model.py /path/to/instances_folder/ GUROBI 10
 ```
 
-### Contact
+## Author
 [Alessandro Romano]
 
 [PuLP]:https://pythonhosted.org/PuLP/
