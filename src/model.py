@@ -12,21 +12,21 @@ def main():
 	# Time limit for solver
 	maxTime = int(sys.argv[3])
 
-	# Check if directory of instances or single instance
+	# Checking if is a directory of instances or a single instance
 	if(os.path.isdir(pathInstances)):
 		instances_list = os.listdir(pathInstances)
 		instances_list.sort()
 	else:
 		instances_list = [pathInstances]
 		pathInstances = ""
-		
+
 	# Parameters for cbc
 	cbcOpt = ["rens","on","local","on"]
-	
+
 	print("\n\n" + solv + "\nmaxTime=" + str(maxTime) + "s\n\n")
 
 	for inst in instances_list:
-		# Read instance from file
+		# Reading instance from file
 		ris = instance_loader(pathInstances+inst)
 		print("############################################")
 		print("####### "+inst+" #######")
@@ -101,7 +101,7 @@ def main():
 			print(solv + " solver doesn't exists")
 			quit()
 
-		
+
 		#prob.writeLP("/tmp/prob/"+ inst + ".lp")
 
 		# Print problem status
@@ -116,7 +116,7 @@ def main():
 		print("--------")
 
 		edges = []
-		# Print archs used
+		# Printing archs used
 		for i in [o]+NODES:
 			for j in [d]+NODES:
 				if(i!=j):
@@ -129,7 +129,7 @@ def main():
 							edges.append((i,o))
 		print("--------")
 
-		# Print path
+		# Printing path
 		path = []
 		node = 0
 		for i in range(0,len(edges)):

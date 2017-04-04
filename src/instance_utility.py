@@ -5,12 +5,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 ##
-# Adapt a AFG instance for
+# Adapts an AFG instance for
 # Prize-collecting Traveling Salesman Problem with Time Windows (PCTSPTW)
-# - Swap time windows and distances matrix
-# - Add a random prize from 1 to 100(int) for each nodes except node 0
-# - Sobstitute first row with non zero values
-# - Add a random number from 1 to 10(float) to each elements
+# - Swaps time windows and distances matrix
+# - Adds a random prize from 1 to 100(int) for each nodes except node 0
+# - Substitutes the first row with non zero values
+# - Adds a random number from 1 to 10(float) to each elements
 # under the diagonal of distances matrix
 ##
 # Params:
@@ -22,33 +22,33 @@ import matplotlib.pyplot as plt
 def convert_AFG_instance(old_instance,new_instance,m_min=0,m_max=5,p_min=1,p_max=100):
 	fp = open(old_instance)
 
-	# Remove new_instance if exist
+	# Removing new instances if they exist
 	try:
 		os.remove(new_instance)
 	except OSError:
 		pass
-	
+
 	fp_out = open(new_instance,"a")
 
-	# Read every line from file and save into a list
+	# Reading each line from file and save them into a list
 	lines = [line for i,line in enumerate(fp)]
 	fp.close()
 
-	# Select from the first line the number of nodes
+	# Selecting from the first line the number of nodes
 	nodes = int(lines[0].split("\n")[0])
-	# Write the number of nodes into a new instance file
+	# Writing the number of nodes into a new instance file
 	fp_out.write("%s\n" % nodes)
 
-	# Swap distances matrix with time windows
+	# Swapping the distances matrix with time windows
 	lines = [lines[0]] + lines[nodes+1:nodes*2+1] + lines[1:nodes+1]
 
-	# Select and write time series intervals and write on new instance
-	# adding prize for each node
+	# Selecting time series intervals and write them on a new instance
+	# by adding a prize for each node
 	for i in range(1,nodes+1):
 		line_old = lines[i].split()
 		fp_out.write("%s,%s %s\n" % (line_old[0],line_old[1].split("\n")[0],random.randint(1,100)))
 
-	# Read first column and add a random number, write it like
+	# Read first column and add a random number, write it as
 	# first row of the matrix
 	fp_out.write("0 ")
 	for i in range(nodes+2,nodes*2+1):
@@ -56,17 +56,17 @@ def convert_AFG_instance(old_instance,new_instance,m_min=0,m_max=5,p_min=1,p_max
 		fp_out.write("%s " % (line[0] + random.randint(m_min,m_max)))
 	fp_out.write("\n")
 
-	# Write rest of the matrix from second row
+	# Writing the rest of the matrix from second row
 	for i in lines[nodes+2:nodes*2+1]:
 		fp_out.write(i)
 
 ##
-# Adapt a TSPTW Langevin instance for
+# Adapts a TSPTW Langevin instance for
 # Prize-collecting Traveling Salesman Problem with Time Windows (PCTSPTW)
-# - Add a random prize from 1 to 100(int) for each nodes except node 0
-# - Move node 0 from last line to first line
-# - Make distances matrix asimmetric
-# - Add a random number from 1 to 10(float) to each elements
+# - Adds a random prize from 1 to 100(int) for each nodes except node 0
+# - Moves node 0 from last line to first line
+# - Makes distances matrix asimmetric
+# - Adds a random number from 1 to 10(float) to each elements
 # under the diagonal of distances matrix
 ##
 # Params:
@@ -78,35 +78,35 @@ def convert_AFG_instance(old_instance,new_instance,m_min=0,m_max=5,p_min=1,p_max
 def convert_Lang_instance(old_instance,new_instance,m_min=0,m_max=5,p_min=1,p_max=100):
 	fp = open(old_instance)
 
-	# Remove new_instance if exist
+	# Removing new_instance if exist
 	try:
 		os.remove(new_instance)
 	except OSError:
 		pass
-	
+
 	fp_out = open(new_instance,"a")
 
-	# Read every line from file and save into a list
+	# Reading each line from file and save it into a list
 	lines = [line for i,line in enumerate(fp)]
 	fp.close()
 
-	# Select from the first line the number of nodes
+	# Selecting from the first line the number of nodes
 	nodes = int(lines[0].split("\n")[0])
-	# Write the number of nodes into a new instance file
+	# Writing the number of nodes into a new instance file
 	fp_out.write("%s\n" % nodes)
 
-	# Select starting node from nodes+1 line, before matrix,
-	# and write it on first line with value prize to 0
+	# Selecting starting node from nodes+1 line (before matrix)
+	# and write it on the first line with a prize equal to 0
 	line_old = lines[nodes].split()
 	fp_out.write("%s,%s %s\n" % (line_old[0],line_old[1].split("\n")[0],0))
 
-	# Select and write time series intervals and write on new instance
-	# adding prize for each node
+	# Selecting and writing of time series intervals and writing on new
+	# instance by adding a prize for each node
 	for i in range(1,nodes):
 		line_old = lines[i].split()
 		fp_out.write("%s,%s %s\n" % (line_old[0],line_old[1].split("\n")[0],random.randint(1,100)))
 
-	# Select distances matrix and write it into new instance
+	# Selecting distances matrix and writing into a new instance
 	# file by adding a random value to each elements
 	# under the diagonal
 	for i in range(nodes+1,nodes+nodes+1):
@@ -116,12 +116,12 @@ def convert_Lang_instance(old_instance,new_instance,m_min=0,m_max=5,p_min=1,p_ma
 		for e in line:
 			fp_out.write("%s " % e)
 		fp_out.write("\n")
-		
+
 	fp_out.close()
 
 ##
-# For every instance file in dir_in generate an instance
-# with same name in dir_out
+# For every instance file in dir_in generates an instance
+# with the same name in dir_out
 ##
 # Params:
 # dir_in - path to old instances directory
@@ -136,7 +136,7 @@ def generate_instances(inst_name="Lang",dir_in="data/Langevin Instances/",dir_ou
 			convert_AFG_instance(dir_in+inst, dir_out+inst)
 
 ##
-# This function return a dictionary contain the information
+# This function returns a dictionary contains the information
 # for each instance:
 # - Number of nodes
 # - Time windows for each node
@@ -144,54 +144,54 @@ def generate_instances(inst_name="Lang",dir_in="data/Langevin Instances/",dir_ou
 # - Matrix of distances
 # Params:
 ##
-# path - path of the file that contain the instance
+# path - path of the file that contains the instance
 ##
 def instance_loader(path):
 	dictionary = {}
-	# array contain all text file 
+	# array contains all text file
 	array = []
-	# dictionary a contain the begin of the time windows for each node
+	# dictionary a contains the begin of the time windows for each node
 	a = {}
-	#dictionary b contain the close of the time windows for each node
+	#dictionary b contains the close of the time windows for each node
 	b = {}
-	#dictionary p contain the price for each node
+	#dictionary p contains the price for each node
 	p = {}
-	
+
 	count = 0
 	i = 1
-	array = open(path).read().splitlines()  
+	array = open(path).read().splitlines()
 
-	# variable n contain the number of nodes
+	# variable n contains the number of nodes
 	n = int(array[0])
-	
+
 	while(count < n):
 		price = array[i].split()
 		time = price[0].split(",")
-		
+
 		a.update({count : int(time[0])})
 		b.update({count : int(time[1])})
 		p.update({count : float(price[1])})
-		
+
 		count = count + 1
 		i = i + 1
-	
+
 	i = n + 1
-	
-	# create a matrix m of zero
+
+	# Creating matrix m filled with zeros
 	m = np.zeros(shape=(n,n))
-	
-	# populate each row of matrix 
+
+	# Populating of each row of matrix
 	for j in range(0, n):
 		temp = array[i].split()
 		m[j] = temp
 		i = i + 1
-	
+
 	dictionary = {"n": n, "a": a, "b": b, "p": p, "m": m}
-		
+
 	return dictionary
 
 ##
-# Plot execution time results saved on csv
+# Plots execution time results that has been saved on csv
 ##
 # Params:
 # timesPath - executsion times for two solvers
@@ -212,5 +212,5 @@ def gurobi_cbc_times(timesPath,graphPath):
 	plt.ylabel("Seconds")
 	plt.xlabel("Instance")
 	plt.savefig(graphPath+"_log.png", bbox_inches='tight')
-	
+
 	plt.close()
