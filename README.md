@@ -5,7 +5,7 @@ This project is designed for educational purposes as project of the corse of Mod
 I wrote a simple report (in Italian) as description of the work done. If you need it please contact me.
 
 
-### Tech
+## Tech
 This is what you need before running:
 
 * **Python 3.x**
