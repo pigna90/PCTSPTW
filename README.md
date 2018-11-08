@@ -33,10 +33,6 @@ Solve a set of instance using GUROBI with max_time=10s:
 $ python3 src/model.py /path/to/instances_folder/ GUROBI 10
 ```
 
-## Author
-[Alessandro Romano]
-
 [PuLP]:https://pythonhosted.org/PuLP/
 [CBC]:https://projects.coin-or.org/Cbc
 [GUROBI]:http://gurobi.com/
-[Alessandro Romano]:mailto:alessandro.romano@linux.com
