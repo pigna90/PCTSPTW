@@ -1,8 +1,8 @@
 # Prize-Collecting Traveling Salesman Problem with Time Windows (PCTSPTW)
 
-This project has been made for educational purposes during the lecture of Model-Driven Decision Methods a.a 2015/16 (University Of Pisa). The goal is to implement a Linear Programming Model with [PuLP] and solve it with at least two different solvers: [CBC] and [GUROBI] (Accademic License) (feel free to use whatever you want/need!). At last  optimize one of these in order to improve time performance.
+This project has been made for educational purposes during the lecture of Model-Driven Decision Methods a.a 2015/16 (University Of Pisa). The goal is to implement a Linear Programming Model with [PuLP] and solve it with at least two different solvers: [CBC] and [GUROBI] (Academic License) (feel free to use whatever you want/need!). At last  optimize one of these in order to improve time performance.
 
-I wrote a simple report (in Italian) as description of the work I've done. If you need it please contact me.
+I wrote a simple report (in Italian) as a description of the work I've done. If you need it please contact me.
 
 
 ## Requirements
@@ -28,7 +28,7 @@ Solve one instance using CBC with max_time=600s:
 ```sh
 $ python3 src/model.py instance.dat CBC 600
 ```
-Solve a set of instance using GUROBI with max_time=10s:
+Solve a set of instances using GUROBI with max_time=10s:
 ```sh
 $ python3 src/model.py /path/to/instances_folder/ GUROBI 10
 ```
